@@ -19,18 +19,15 @@ dicc = {}
 for word in data.split():
     word = word.lower()
     word = re.sub(r'[-.,?;—!\']', '', word)
-    if word not in dicc:
+    if word not in dicc or len(word) <= 4:
         dicc[word] = 1
     else:
         dicc[word] += 1
 
-# Generate word cloud from frequencies
 wc.generate_from_frequencies(dicc)
 
-# Save the word cloud to a file
 wc.to_file("myfile.jpg")
 
-# Display the word cloud (optional)
 plt.imshow(wc, interpolation='bilinear')
 plt.axis("off")
 plt.show()
